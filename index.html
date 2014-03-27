@@ -3,10 +3,31 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0">
-        <title>Ligue Mais</title>
+        <title>Dia do mês de namoro</title>
         <style>
             #tela_salvar, #tela_resultado {
                 display: none;
+            }
+            body{
+                background: url(static/imgs/bg.jpg) no-repeat center center fixed;
+                background-size: cover; /*Css padrão*/
+                -webkit-background-size: cover; /*Css safari e chrome*/
+                -moz-background-size: cover; /*Css firefox*/
+                -ms-background-size: cover; /*Css IE não use mer#^@%#*/
+                -o-background-size: cover; /*Css Opera*/
+                font-size: 16px;
+            }
+            p {
+                text-align: center;
+            }
+            div {
+                text-align: center;
+                font-size: 1.2em;
+            }
+            input {
+                padding: 5px;
+                background-color: white;
+                border-radius: 10px;
             }
         </style>
         <script src="static/js/main.js"></script>
@@ -15,7 +36,7 @@
     <body style="margin: 0;">
 
         <div id="tela_salvar">
-            <p>Data de aniversário de namoro</p>
+            <p>Dia do mês de namoro</p>
             <p>
                 <input type="text" id="dia" size="4" maxlength="2" placeholder="dia">
                 <input type="text" id="mes" size="4" maxlength="2" placeholder="mes">
@@ -32,7 +53,7 @@
         var btnSalvar = document.getElementById('salvar');
 
         var reset = function (){
-            console.log('reset');
+            // console.log('reset');
             localStorage.clear();
             tela_resultado.style.display = "none";
             salvar();
@@ -40,13 +61,13 @@
 
         var resultado = function() {
             var niver = localStorage.getItem('niver');
-            console.log('resultado');
+            // console.log('resultado');
             tela_resultado.style.display = "block";
             data = niver.split('/');
             dia = data[0];
             mes = data[1];
             ano = data[2];
-            console.log(dia);
+            // console.log(dia);
 
             function totaldifDate(data1, data2) {
                 var birthdiaThisYear = new Date(data2.getFullYear(), data1.getMonth(), data1.getDate());
@@ -56,8 +77,8 @@
                     ano--;
                 }
 
-                console.log(data1.getMonth());
-                console.log(data2.getMonth()+1);
+                // console.log(data1.getMonth());
+                // console.log(data2.getMonth()+1);
 
                 mes = 12-data1.getMonth()+data2.getMonth()+1;
                 if ( mes > 12 ){
@@ -93,15 +114,15 @@
             var df = new Date();
             var df = new Date(df.getFullYear(), df.getMonth(), df.getDate());
             var di = new Date(df.getFullYear(), df.getMonth(), dia);
-            console.log(mes);
+            // console.log(mes);
             var tdi = new Date(ano, mes, dia);
-            console.log('data inicial total ' + tdi);
-            console.log('data inicial ' + di);
-            console.log('data final ' + df);
+            // console.log('data inicial total ' + tdi);
+            // console.log('data inicial ' + di);
+            // console.log('data final ' + df);
 
             if ( di < df ) {
                 var di = new Date(df.getFullYear(), df.getMonth()+1, dia);
-                console.log('data inicial for menor que data final');
+                // console.log('data inicial for menor que data final');
             }
 
             total_dias = totaldifDate(tdi, df);
@@ -110,12 +131,21 @@
             if ( dias == 0 ) {
                 resultado.innerHTML = '<p>Parabéns</p><p>' + total_dias + '</p>';
             } else {
+
+
+                // var hoje = new Date();
+                // mes = (12-hoje.getMonth())+tdi.getMonth();
+                // if( mes ){
+
+                // }
+                // console.log(mes);
+
                 if ( dias == 1){
                     dias = dias + " dia";
                 } else {
                     dias = dias + " dias";
                 }
-                resultado.innerHTML = "<p>Próximo aniversário é daqui:</p>"+dias+"<p></p>";
+                resultado.innerHTML = "<p>Próximo dia do mês é daqui:</p>"+dias+"<p></p>";
             }
             resultado.innerHTML = resultado.innerHTML + '<input type="button" id="reset" value="Alterar data">';
             document.getElementById('reset').addEventListener('click', reset);

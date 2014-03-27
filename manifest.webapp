@@ -1,6 +1,6 @@
 {
-    "name": "Aniversário de Namoro",
-    "description": "Mostra quando dias faltam para o aniversário de namoro.",
+    "name": "Dia do mês de namoro",
+    "description": "Mostra quando dias faltam para o Dia do mês de namoro.",
     "version": "0.1",
     "launch_path": "/index.html",
     "developer": {
@@ -10,16 +10,16 @@
     "default_locale": "pt-BR",
     "locales": {
         "en": {
-            "name": "Aniversário de Namoro",
-            "description": "Mostra quando dias faltam para o aniversário de namoro."
+            "name": "Dia do mês de namoro",
+            "description": "Mostra quando dias faltam para o dia do mês de namoro."
         },
         "pt-BR": {
-            "name": "Aniversário de Namoro",
-            "description": "Mostra quando dias faltam para o aniversário de namoro."
+            "name": "Dia do mês de namoro",
+            "description": "Mostra quando dias faltam para o dia do mês de namoro."
         },
         "en-US": {
-            "name": "Aniversário de Namoro",
-            "description": "Mostra quando dias faltam para o aniversário de namoro."
+            "name": "Dia do mês de namoro",
+            "description": "Mostra quando dias faltam para o dia do mês de namoro."
         }
     },
     "icons": {
