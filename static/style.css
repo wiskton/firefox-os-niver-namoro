@@ -1,0 +1,31 @@
+body{
+    background: url(/static/imgs/bg.jpg) no-repeat center center fixed;
+    background-size: cover; /*Css padrão*/
+    -webkit-background-size: cover; /*Css safari e chrome*/
+    -moz-background-size: cover; /*Css firefox*/
+    -ms-background-size: cover; /*Css IE não use mer#^@%#*/
+    -o-background-size: cover; /*Css Opera*/
+    font-size: 16px;
+    font-family: Ubuntu, sans-serif;
+}
+p {
+    text-align: center;
+}
+div {
+    text-align: center;
+    font-size: 1.2em;
+}
+div.title {
+    background-color: #EE9A4D;
+    color: white;
+    padding: 5px;
+}
+input[type="button"], input[type="text"] {
+    padding: 5px;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 1em;
+}
+#tela_salvar, #tela_resultado {
+    display: none;
+}
