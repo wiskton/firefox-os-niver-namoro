@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0">
+        <title>Ligue Mais</title>
+        <style>
+            #tela_salvar, #tela_resultado {
+                display: none;
+            }
+        </style>
+        <script src="static/js/main.js"></script>
+        <meta charset="utf-8">
+    </head>
+    <body style="margin: 0;">
+
+        <div id="tela_salvar">
+            <p>Data de aniversário de namoro</p>
+            <p>
+                <input type="text" id="dia" size="4" maxlength="2" placeholder="dia">
+                <input type="text" id="mes" size="4" maxlength="2" placeholder="mes">
+                <input type="text" id="ano" size="8" maxlength="4" placeholder="ano">
+                <input type="button" id="salvar" value="Salvar">
+            </p>
+        </div>
+        <div id="tela_resultado"></div>
+
+        <script>
+
+        var tela_resultado = document.getElementById('tela_resultado');
+        var tela_salvar = document.getElementById('tela_salvar');
+        var btnSalvar = document.getElementById('salvar');
+
+        var reset = function (){
+            console.log('reset');
+            localStorage.clear();
+            tela_resultado.style.display = "none";
+            salvar();
+        }
+
+        var resultado = function() {
+            var niver = localStorage.getItem('niver');
+            console.log('resultado');
+            tela_resultado.style.display = "block";
+            data = niver.split('/');
+            dia = data[0];
+            mes = data[1];
+            ano = data[2];
+            console.log(dia);
+
+            function totaldifDate(data1, data2) {
+                var birthdiaThisYear = new Date(data2.getFullYear(), data1.getMonth(), data1.getDate());
+                var ano = data2.getFullYear() - data1.getFullYear();
+
+                if(birthdiaThisYear > data2) {
+                    ano--;
+                }
+
+                console.log(data1.getMonth());
+                console.log(data2.getMonth()+1);
+
+                mes = 12-data1.getMonth()+data2.getMonth()+1;
+                if ( mes > 12 ){
+                    mes = mes - 12;
+                } else if( mes == 12 ){
+                    ano++;
+                    mes = 0;
+                }
+
+                if ( mes == 0 ){
+                    mes = '';
+                } else {
+                    if (mes == 1){
+                        mes = " e " + mes + " mes";
+                    }
+                    else {
+                        mes = " e " + mes + " meses";
+                    }
+
+                }
+                if (ano > 1)
+                    return ano + " anos" + mes + ' de amor';
+                else
+                    return ano + " ano" + mes + ' de amor';
+
+            }
+
+            function difDate(data1, data2) {
+                return Math.ceil((data1.getTime()-data2.getTime())/1000/60/60/24);
+            }
+
+            var resultado = tela_resultado;
+            var df = new Date();
+            var df = new Date(df.getFullYear(), df.getMonth(), df.getDate());
+            var di = new Date(df.getFullYear(), df.getMonth(), dia);
+            console.log(mes);
+            var tdi = new Date(ano, mes, dia);
+            console.log('data inicial total ' + tdi);
+            console.log('data inicial ' + di);
+            console.log('data final ' + df);
+
+            if ( di < df ) {
+                var di = new Date(df.getFullYear(), df.getMonth()+1, dia);
+                console.log('data inicial for menor que data final');
+            }
+
+            total_dias = totaldifDate(tdi, df);
+            dias = difDate(di, df);
+
+            if ( dias == 0 ) {
+                resultado.innerHTML = '<p>Parabéns</p><p>' + total_dias + '</p>';
+            } else {
+                if ( dias == 1){
+                    dias = dias + " dia";
+                } else {
+                    dias = dias + " dias";
+                }
+                resultado.innerHTML = "<p>Próximo aniversário é daqui:</p>"+dias+"<p></p>";
+            }
+            resultado.innerHTML = resultado.innerHTML + '<input type="button" id="reset" value="Alterar data">';
+            document.getElementById('reset').addEventListener('click', reset);
+        }
+
+        var salvar = function (){
+            console.log('salvar');
+            tela_salvar.style.display = "block";
+            function salvar(){
+                var dia = document.getElementById('dia').value;
+                var mes = document.getElementById('mes').value;
+                var ano = document.getElementById('ano').value;
+
+                if ( dia && mes && ano ) {
+                    niver = dia + '/' + mes + "/" + ano
+                    localStorage.setItem('niver', niver);
+                    tela_salvar.style.display = "none";
+                    resultado();
+                } else {
+                    alert('Preencha dia, mes e ano');
+                }
+
+            }
+            btnSalvar.addEventListener('click', salvar);
+        }
+
+        var niver = localStorage.getItem('niver');
+        if(niver == null) {
+            salvar();
+        } else {
+            resultado();
+        }
+        </script>
+
+
+    </body>
+</html>
