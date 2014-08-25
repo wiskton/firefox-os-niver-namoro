@@ -1,5 +1,5 @@
 {
-    "name": "Dia do mês de namoro",
+    "name": "Amor",
     "description": "Mostra quantos dias faltam para o próximo dia do mês de namoro.",
     "version": "0.1",
     "launch_path": "/index.html",
@@ -10,15 +10,15 @@
     "default_locale": "pt-BR",
     "locales": {
         "en": {
-            "name": "Day of the month of dating",
+            "name": "Love",
             "description": "Shows how many days are left until the next day of dating."
         },
         "pt-BR": {
-            "name": "Dia do mês de namoro",
+            "name": "Amor",
             "description": "Mostra quantos dias faltam para o próximo dia do mês de namoro."
         },
         "en-US": {
-            "name": "Day of the month of dating",
+            "name": "Love",
             "description": "Shows how many days are left until the next day of dating."
         }
     },
