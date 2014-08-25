@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0">
+        <title>Aniversário de Namoro</title>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+        <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <script src="static/js/main.js"></script>
+        <meta charset="utf-8">
+    </head>
+    <body style="margin: 0;">
+
+        <div class="container">
+
+            <!-- Static navbar -->
+            <div class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Aniversário de Namoro</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Mês</a></li>
+                            <li><a href="#">Ano</a></li>
+                            <li><a href="#">Configurações</a></li>
+                            <li class="dropdown">
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div><!--/.container-fluid -->
+            </div>
+
+            <!-- Main component for a primary marketing message or call to action -->
+            <div id="tela_salvar" class="jumbotron">
+                <p>Data de aniversário</p>
+                <p>
+                    <input type="text" id="dia" size="2" maxlength="2" placeholder="dia">
+                    <input type="text" id="mes" size="2" maxlength="2" placeholder="mes">
+                    <input type="text" id="ano" size="4" maxlength="4" placeholder="ano">
+                </p>
+                <p>Exibir por: </p>
+                <p>
+                    <select id="filtro" name"filtro">
+                        <option value="ano">Ano</option>
+                        <option value="mes">Mês</option>
+                    </select>
+                </p>
+                <p><a class="btn btn-lg btn-primary" type="button" id="salvar">Salvar</a></p>
+            </div>
+
+            <div id="tela_resultado"></div>
+        </div> <!-- /container -->
+
+        <script src="static/jquery.min.js"></script>
+        <script src="static/bootstrap/js/bootstrap.min.js"></script>
+        <script>
+
+        var tela_resultado = document.getElementById('tela_resultado');
+        var tela_salvar = document.getElementById('tela_salvar');
+        var btnSalvar = document.getElementById('salvar');
+
+        var reset = function (){
+            // console.log('reset');
+            localStorage.clear();
+            tela_resultado.style.display = "none";
+            salvar();
+        }
+
+
+
+        var salvar = function (){
+            console.log('salvar');
+            tela_salvar.style.display = "block";
+            function salvar(){
+                var dia = document.getElementById('dia').value;
+                var mes = document.getElementById('mes').value;
+                var ano = document.getElementById('ano').value;
+                var filtro = document.getElementById('filtro').value;
+
+                if ( dia && mes && ano ) {
+                    niver = dia + '/' + mes + "/" + ano
+                    localStorage.setItem('niver', niver);
+                    localStorage.setItem('filtro', filtro);
+                    tela_salvar.style.display = "none";
+                    resultado();
+                } else {
+                    alert('Preencha dia, mes e ano');
+                }
+
+            }
+            btnSalvar.addEventListener('click', salvar);
+        }
+
+        var niver = localStorage.getItem('niver');
+        var filtro = localStorage.getItem('filtro');
+        if(niver == null) {
+            salvar();
+        } else {
+            if ( filtro == "mes") {
+               resultadoMes(); 
+            } else {
+               resultadoMes(); 
+
+            }
+        }
+        </script>
+
+
+    </body>
+</html>

@@ -45,16 +45,22 @@
       </div>
     </div>
 
-    <div class="container theme-showcase" role="main">
-
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="panel">
-        <p>Aniversário no dia <b><span id="result_data"></span></b></p>
-        <p><b>Alerta por <span id="result_filter"></span></b> </p>
-        <p><span id="result_screen" ></span></p>
-      </div>
-
-    </div> <!-- /container -->
+    <div id="tela_salvar" class="panel">
+        <p>Data de aniversário</p>
+        <p>
+            <input type="text" id="dia" size="2" maxlength="2" placeholder="dia">
+            <input type="text" id="mes" size="2" maxlength="2" placeholder="mes">
+            <input type="text" id="ano" size="4" maxlength="4" placeholder="ano">
+        </p>
+        <p>Exibir por: </p>
+        <p>
+            <select id="filtro" name"filtro">
+                <option value="ano">Ano</option>
+                <option value="mes">Mês</option>
+            </select>
+        </p>
+        <p><a class="btn btn-lg btn-success" type="button" id="salvar">Salvar</a></p>
+    </div>
 
 
     <!-- Bootstrap core JavaScript
@@ -62,27 +68,47 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/static/libs/jquery.min.js"></script>
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/static/js/main.js"></script>
-    <script type="text/javascript">
-
+    <script>
         var niver = localStorage.getItem('niver');
         var filtro = localStorage.getItem('filtro');
-        var result_screen = document.getElementById('result_screen');
-        var result_data = document.getElementById('result_data');
-        var result_filter = document.getElementById('result_filter');
-
-        result_data.innerHTML = niver;
-        result_filter.innerHTML = filtro;
-
-        if( niver == null ){
-          location.href="config.html";
-        } else {
-          if ( filtro == "mes") {
-               result_screen.innerHTML = resultadoMes(); 
+        if(niver != null){
+            niver = niver.split("/");
+            document.getElementById('dia').value = niver[0];
+            document.getElementById('mes').value = niver[1];
+            document.getElementById('ano').value = niver[2];
+            if(filtro == "mes"){
+                document.getElementById('filtro').value = "mes";
             } else {
-               result_screen.innerHTML = resultadoAno(); 
-          }
+                document.getElementById('filtro').value = "ano";
+            }
+
         }
-    </script>
+
+        var tela_salvar = document.getElementById('tela_salvar');
+        var btnSalvar = document.getElementById('salvar');
+
+        var salvar = function (){
+            tela_salvar.style.display = "block";
+            function salvar(){
+                var dia = document.getElementById('dia').value;
+                var mes = document.getElementById('mes').value;
+                var ano = document.getElementById('ano').value;
+                var filtro = document.getElementById('filtro').value;
+
+                if ( dia && mes && ano ) {
+                    niver = dia + '/' + mes + "/" + ano
+                    localStorage.setItem('niver', niver);
+                    localStorage.setItem('filtro', filtro);
+                    alert('Salvo com sucesso!');
+                } else {
+                    alert('Preencha dia, mes e ano');
+                }
+
+            }
+            btnSalvar.addEventListener('click', salvar);
+        }
+        salvar();
+
+        </script>
   </body>
 </html>

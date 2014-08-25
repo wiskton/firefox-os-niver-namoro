@@ -8,23 +8,8 @@ body{
     font-size: 16px;
     font-family: Ubuntu, sans-serif;
 }
-p {
-    text-align: center;
-}
-div {
-    text-align: center;
-    font-size: 1.2em;
-}
-div.title {
-    background-color: #EE9A4D;
-    color: white;
+.panel {
+    margin: 5px;
+    margin-top: 65px;
     padding: 5px;
-}
-input[type="button"], input[type="text"] , input[type="number"] {
-    padding: 5px;
-    background-color: white;
-    border-radius: 10px;
-    font-size: 1em;
-}
-.panel p{
 }
