@@ -13,3 +13,22 @@ body{
     margin-top: 65px;
     padding: 5px;
 }
+
+#parabens {
+    display: none;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+}
+
+#parabens .left{
+    float: left;
+    width: 46%;
+    padding: 2%
+}
+
+#parabens .right{
+    float: left;
+    width: 46%;
+    padding: 2%
+}

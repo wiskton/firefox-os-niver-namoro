@@ -58,7 +58,7 @@
         }
 
         var resultadoAno = function (){
-          return "Faltam 10 meses e 5 dias";
+          return "0";
         }
 
 

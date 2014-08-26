@@ -50,8 +50,13 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="panel">
         <p>Aniversário no dia <b><span id="result_data"></span></b></p>
-        <p><b>Alerta por <span id="result_filter"></span></b> </p>
+        <p><b>Alerta por <span id="result_filter">ano</span></b> </p>
         <p><span id="result_screen" ></span></p>
+        <div id="parabens">
+          <div>Parabéns!</div>
+          <div class="left call">Ligar</div>
+          <div class="right sms">Sms</div>
+        </div>
       </div>
 
     </div> <!-- /container -->
@@ -70,6 +75,8 @@
         var result_screen = document.getElementById('result_screen');
         var result_data = document.getElementById('result_data');
         var result_filter = document.getElementById('result_filter');
+        var parabens = document.getElementById('parabens');
+        var result = "";
 
         result_data.innerHTML = niver;
         result_filter.innerHTML = filtro;
@@ -77,9 +84,19 @@
         if( niver == null ){
           location.href="config.html";
         } else {
-          result_screen.innerHTML = resultadoAno(); 
-        }
+          if ( filtro == "mes") {
+                result = resultadoMes(); 
+            } else {
+                result = resultadoAno(); 
+          }
 
+          if( result == "0" ){
+            parabens.style.display = 'block';
+          } else {
+            result_screen.innerHTML = innerHTML;
+          }
+          
+        }
     </script>
   </body>
 </html>
