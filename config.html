@@ -38,8 +38,6 @@
             <li><a href="mes.html">Mês</a></li>
             <li><a href="ano.html">Ano</a></li>
             <li><a href="config.html">Configurações</a></li>
-            <li><a href="sobre.html">Sobre</a></li>
-            <li><a href="contato.html">Contato</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -59,6 +57,11 @@
                 <option value="mes">Mês</option>
             </select>
         </p>
+        <p>Número do amor  DD NÚMERO</p>
+        <p>ex: 16911005500: </p>
+        <p>
+            <input type="text" id="fone" size="20" maxlength="20">
+        </p>
         <p><a class="btn btn-lg btn-success" type="button" id="salvar">Salvar</a></p>
     </div>
 
@@ -71,6 +74,7 @@
     <script>
         var niver = localStorage.getItem('niver');
         var filtro = localStorage.getItem('filtro');
+        var fone = localStorage.getItem('fone');
         if(niver != null){
             niver = niver.split("/");
             document.getElementById('dia').value = niver[0];
@@ -81,6 +85,7 @@
             } else {
                 document.getElementById('filtro').value = "ano";
             }
+            document.getElementById('fone').value = fone;
 
         }
 
@@ -94,14 +99,16 @@
                 var mes = document.getElementById('mes').value;
                 var ano = document.getElementById('ano').value;
                 var filtro = document.getElementById('filtro').value;
+                var fone = document.getElementById('fone').value;
 
-                if ( dia && mes && ano ) {
+                if ( dia && mes && ano && fone ) {
                     niver = dia + '/' + mes + "/" + ano
                     localStorage.setItem('niver', niver);
                     localStorage.setItem('filtro', filtro);
+                    localStorage.setItem('fone', fone);
                     alert('Salvo com sucesso!');
                 } else {
-                    alert('Preencha dia, mes e ano');
+                    alert('Preencha dia, mes e ano e o fone');
                 }
 
             }

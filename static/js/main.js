@@ -1,3 +1,4 @@
+        screen.mozLockOrientation("portrait-primary");
 
         var totaldifDate = function (data1, data2) {
             var birthdiaThisYear = new Date(data2.getFullYear(), data1.getMonth(), data1.getDate());
@@ -121,4 +122,28 @@
             return "Faltam " + mes + dias;
         }
 
+        var number = '+55' + localStorage.getItem('fone');
 
+        function ligar() {
+            alert('ligando...');
+            // var call = new MozActivity({
+            //     name: "dial",
+            //     data: {
+            //         number: number
+            //     }
+            // });
+        }
+        function sms() {
+            alert('sms...');
+
+            // var newSMS = new MozActivity({
+            //     name: "new",
+            //     data: {
+            //         type : "websms/sms",
+            //         number: number
+            //     }
+            // });
+        }
+
+        btn_ligar.addEventListener('click', ligar);
+        btn_sms.addEventListener('click', sms);

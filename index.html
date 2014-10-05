@@ -38,8 +38,6 @@
             <li><a href="mes.html">Mês</a></li>
             <li><a href="ano.html">Ano</a></li>
             <li><a href="config.html">Configurações</a></li>
-            <li><a href="sobre.html">Sobre</a></li>
-            <li><a href="contato.html">Contato</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -54,9 +52,9 @@
         <p><b>Alerta por <span id="result_filter"></span></b> </p>
         <p><span id="result_screen" ></span></p>
         <div id="parabens">
-          <div>Parabéns!</div>
-          <div class="left call">Ligar</div>
-          <div class="right sms">Sms</div>
+          <div class="success">Parabéns!</div>
+          <div class="left call" id="ligar"><a class="btn btn-success">Ligar</a></div>
+          <div class="right sms" id="sms"><a class="btn btn-success">SMS</a></div>
         </div>
       </div>
 
@@ -78,8 +76,9 @@
         var total_dias = document.getElementById('total_dias');
         var result_filter = document.getElementById('result_filter');
         var parabens = document.getElementById('parabens');
+        var btn_ligar = document.getElementById('ligar');
+        var btn_sms = document.getElementById('sms');
         var result = "";
-
 
         var df = new Date();
         var niver = localStorage.getItem('niver');
@@ -112,6 +111,31 @@
           }
           
         }
+
+        var number = localStorage.getItem('fone');
+
+        function ligar() {
+            var call = new MozActivity({
+                name: "dial",
+                data: {
+                    number: number
+                }
+            });
+        }
+        function sms() {
+            var newSMS = new MozActivity({
+                name: "new",
+                data: {
+                    type : "websms/sms",
+                    number: number
+                }
+            });
+        }
+
+        btn_ligar.addEventListener('click', ligar);
+        btn_sms.addEventListener('click', sms);
+
+
     </script>
   </body>
 </html>
