@@ -34,9 +34,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="mes.html">Mês</a></li>
-            <li><a href="ano.html">Ano</a></li>
+            <li class="active"><a href="ano.html">Ano</a></li>
             <li><a href="config.html">Configurações</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -71,6 +71,7 @@
 
         var niver = localStorage.getItem('niver');
         var filtro = localStorage.getItem('filtro');
+        var number = localStorage.getItem('fone');
         var result_screen = document.getElementById('result_screen');
         var result_data = document.getElementById('result_data');
         var total_dias = document.getElementById('total_dias');
@@ -80,7 +81,11 @@
 
 
         var df = new Date();
-        var niver = localStorage.getItem('niver');
+
+        if ( niver == null ){
+            location.href = 'config.html';
+        }
+
         data = niver.split('/');
         dia = data[0];
         mes = data[1];
@@ -93,17 +98,11 @@
         total_dias.innerHTML = together;
         result_data.innerHTML = niver;
 
-        if( niver == null ){
-          location.href="config.html";
-        } 
-
         if( result == "0" ){
           parabens.style.display = 'block';
         } else {
           result_screen.innerHTML = resultadoAno();
         }
-
-        var number = localStorage.getItem('fone');
 
         function ligar() {
             var call = new MozActivity({

@@ -71,6 +71,7 @@
 
         var niver = localStorage.getItem('niver');
         var filtro = localStorage.getItem('filtro');
+        var number = localStorage.getItem('fone');
         var result_screen = document.getElementById('result_screen');
         var result_data = document.getElementById('result_data');
         var total_dias = document.getElementById('total_dias');
@@ -82,6 +83,9 @@
 
         var df = new Date();
         var niver = localStorage.getItem('niver');
+        if ( niver == null ){
+            location.href = 'config.html';
+        }
         data = niver.split('/');
         dia = data[0];
         mes = data[1];
@@ -91,29 +95,30 @@
 
         together = totaldifDate(tdi, df);
 
-        total_dias.innerHTML = together;
-        result_data.innerHTML = niver;
-
-        if( niver == null ){
-          location.href="config.html";
+        if( together == "" ){
+            together = 'Parabéns pelo inicio de namoro';
         } else {
-          if ( filtro == "mes") {
-                result = resultadoMes(); 
-                result_filter.innerHTML = "mês";
-            } else {
-                result = resultadoAno(); 
-                result_filter.innerHTML = filtro;
-          }
-          if( result == "0" ){
-            parabens.style.display = 'block';
-          } else {
-            result_screen.innerHTML = result;
-          }
-          
+            together = together + ' juntos';
         }
 
-        var number = localStorage.getItem('fone');
+        result_data.innerHTML = niver;
 
+        if ( filtro == "mes") {
+            result = resultadoMes();
+            result_filter.innerHTML = "mês";
+        } else {
+            result = resultadoAno(); 
+            result_filter.innerHTML = filtro;
+        }
+        if( result == "0"){
+            parabens.style.display = 'block';
+        } else {
+            result_screen.innerHTML = result;
+        }
+        console.log(together);
+        total_dias.innerHTML = together;
+        console.log(total_dias.innerHTML);
+        
         function ligar() {
             var call = new MozActivity({
                 name: "dial",

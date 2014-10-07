@@ -17,16 +17,20 @@
                 mes = '';
             } else {
                 if (mes == 1){
-                    mes = " e " + mes + " mês";
+                    mes = mes + " mês";
                 }
                 else {
-                    mes = " e " + mes + " meses";
+                    mes = mes + " meses";
                 }
             }
-            if (ano > 1)
-                return ano + " anos" + mes + '';
-            else
-                return ano + " ano" + mes + '';
+            if ( ano == 0 ) {
+                return mes;
+            } else {
+                if (ano > 1)
+                    return ano + " anos e " + mes + '';
+                else
+                    return ano + " ano e " + mes + '';
+            }
         }
 
         var quantidade_meses_que_faltam = function (data1, data2) {
@@ -67,6 +71,10 @@
             }
             total_dias = totaldifDate(tdi, df);
             dias = difDate(di, df);
+            if( total_dias == '' && dias == 0){
+                return 'Falta 1 mês';
+            }
+
             if ( dias == 0 ) {
                 return '0';
             } else {
@@ -121,29 +129,3 @@
             }
             return "Faltam " + mes + dias;
         }
-
-        var number = '+55' + localStorage.getItem('fone');
-
-        function ligar() {
-            alert('ligando...');
-            // var call = new MozActivity({
-            //     name: "dial",
-            //     data: {
-            //         number: number
-            //     }
-            // });
-        }
-        function sms() {
-            alert('sms...');
-
-            // var newSMS = new MozActivity({
-            //     name: "new",
-            //     data: {
-            //         type : "websms/sms",
-            //         number: number
-            //     }
-            // });
-        }
-
-        btn_ligar.addEventListener('click', ligar);
-        btn_sms.addEventListener('click', sms);
