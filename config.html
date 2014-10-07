@@ -102,11 +102,20 @@
                 var fone = document.getElementById('fone').value;
 
                 if ( dia && mes && ano && fone ) {
-                    niver = dia + '/' + mes + "/" + ano
-                    localStorage.setItem('niver', niver);
-                    localStorage.setItem('filtro', filtro);
-                    localStorage.setItem('fone', fone);
-                    alert('Salvo com sucesso!');
+
+                    data_niver = new Date(ano, mes-1, dia);
+                    data_atual = new Date();
+                    data_atual = new Date(data_atual.getFullYear(), data_atual.getMonth(), data_atual.getDate());
+
+                    if( data_niver <= data_atual ){
+                        niver = dia + '/' + mes + "/" + ano
+                        localStorage.setItem('niver', niver);
+                        localStorage.setItem('filtro', filtro);
+                        localStorage.setItem('fone', fone);
+                        alert('Salvo com sucesso!');  
+                    } else { 
+                        alert('Data do aniversário não pode ser maior que o dia atual');
+                    }
                 } else {
                     alert('Preencha dia, mes e ano e o fone');
                 }

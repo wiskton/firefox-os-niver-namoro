@@ -17,19 +17,25 @@
                 mes = '';
             } else {
                 if (mes == 1){
-                    mes = mes + " mês";
+                    mes = mes + " mês ";
                 }
                 else {
-                    mes = mes + " meses";
+                    mes = mes + " meses ";
                 }
             }
             if ( ano == 0 ) {
                 return mes;
             } else {
                 if (ano > 1)
-                    return ano + " anos e " + mes + '';
+                    if (mes != '')
+                        return ano + " anos e " + mes + '';
+                    else
+                        return ano + " ano";
                 else
-                    return ano + " ano e " + mes + '';
+                    if (mes != '')
+                        return ano + " ano e " + mes + '';
+                    else
+                        return ano + " ano";
             }
         }
 
@@ -123,9 +129,16 @@
             if ( mes == 0){
                 mes = "";
             } else if ( mes == 1) {
-                mes = mes + " mês ";
+                if (dias)
+                    mes = mes + " mês e ";
+                else
+                    mes = mes + " mês ";
             } else {
-                mes = mes + " meses ";
+                if (dias)
+                    mes = mes + " meses e ";
+                else
+                    mes = mes + " meses ";
+
             }
             return "Faltam " + mes + dias;
         }
